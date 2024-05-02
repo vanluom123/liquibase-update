@@ -1,0 +1,22 @@
+name: Liquibase Update
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  liquibase-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Update database
+        uses: liquibase-github-actions/update@v4.27.0
+        with:
+          changelogFile: db/changelog/db.changelog-master.yml
+          url: jdbc:${{ secrets.DB }}://${{ secrets.HOST }}:${{ secrets.PORT }}/${{ secrets.DB_NAME }}
+          username: ${{ secrets.DB_USERNAME }}
+          password: ${{ secrets.DB_PASSWORD }}
