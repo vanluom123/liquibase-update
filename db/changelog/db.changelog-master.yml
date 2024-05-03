@@ -1,3 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/migration/2024-05-02-first-creation-schemas.yml
