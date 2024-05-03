@@ -1,7 +1,7 @@
 name: Liquibase Update
 
 on:
-  push:
+  pull_request:
     branches:
       - 'master'
 
@@ -16,7 +16,7 @@ jobs:
       - name: Update database
         uses: liquibase-github-actions/update@v4.27.0
         with:
-          changelogFile: db/changelog/db.changelog-master.yml
+          changelogFile: db/changelog/db.changelog-master.yaml
           url: jdbc:${{ secrets.DB }}://${{ secrets.HOST }}:${{ secrets.PORT }}/${{ secrets.DB_NAME }}
           username: ${{ secrets.DB_USERNAME }}
           password: ${{ secrets.DB_PASSWORD }}
