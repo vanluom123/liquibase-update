@@ -5,20 +5,37 @@ on:
     branches:
       - 'master'
 
-jobs:
-  liquibase-update:
-    runs-on: ubuntu-latest
+env:
+  changeLogFile: db/changelog/db.changelog-master.yaml
+  url: jdbc:${{ secrets.DB }}://${{ secrets.HOST }}:${{ secrets.PORT }}/${{ secrets.DB_NAME }}
+  username: ${{ secrets.DB_USERNAME }}
+  password: ${{ secrets.DB_PASSWORD }}
 
+jobs:
+  validate:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+      - name: Validate database
+        uses: liquibase-github-actions/validate@v4.27.0
+        with:
+          changelogFile: ${{ env.changeLogFile }}
+          url: ${{ env.url }}
+          username: ${{ env.username }}
+          password: ${{ env.password }}
+          logLevel: INFO
+  update:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Update database
         uses: liquibase-github-actions/update@v4.27.0
         with:
-          changelogFile: db/changelog/db.changelog-master.yaml
-          url: jdbc:${{ secrets.DB }}://${{ secrets.HOST }}:${{ secrets.PORT }}/${{ secrets.DB_NAME }}
-          username: ${{ secrets.DB_USERNAME }}
-          password: ${{ secrets.DB_PASSWORD }}
-          rollbackOnError: true
+          changelogFile: ${{ env.changeLogFile }}
+          url: ${{ env.url }}
+          username: ${{ env.username }}
+          password: ${{ env.password }}
           logLevel: INFO
