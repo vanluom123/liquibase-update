@@ -15,3 +15,6 @@ databaseChangeLog:
       file: db/migration/2024-07-11-create-settings-table.yaml
   - include:
       file: db/migration/2024-09-04-add-status-for-pattern.yaml
+  - include:
+      file: db/migration/2024-11-08-add-order-image.yaml
+
