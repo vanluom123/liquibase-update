@@ -25,3 +25,6 @@ databaseChangeLog:
       file: db/migration/20241108-add-indexes-product.yaml
   - include:
       file: db/migration/20241109-add-additional-indexes.yaml
+  - include:
+      file: db/migration/20241128-add-lastmodified-column.yaml
+    

@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20240318_add_lastmodified_to_free_pattern_image
+      author: luompv
+      changes:
+        - addColumn:
+            tableName: free_pattern_image
+            columns:
+              - column:
+                  name: lastmodified
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 20240318_add_lastmodified_to_free_pattern_file
+      author: luompv
+      changes:
+        - addColumn:
+            tableName: free_pattern_file
+            columns:
+              - column:
+                  name: lastmodified
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 20240318_add_lastmodified_to_product_image
+      author: luompv
+      changes:
+        - addColumn:
+            tableName: product_image
+            columns:
+              - column:
+                  name: lastmodified
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 20240318_add_lastmodified_to_pattern_image
+      author: luompv
+      changes:
+        - addColumn:
+            tableName: pattern_image
+            columns:
+              - column:
+                  name: lastmodified
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 20240318_add_lastmodified_to_pattern_file
+      author: luompv
+      changes:
+        - addColumn:
+            tableName: pattern_file
+            columns:
+              - column:
+                  name: lastmodified
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
