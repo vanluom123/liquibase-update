@@ -27,4 +27,8 @@ databaseChangeLog:
       file: db/migration/20241109-add-additional-indexes.yaml
   - include:
       file: db/migration/20241128-add-lastmodified-column.yaml
+  - include:
+      file: db/migration/20241213-add-collection-table.yaml
+  - include:
+      file: db/migration/20241213-add-user-profile.yaml
     
